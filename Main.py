@@ -1,18 +1,18 @@
 from typing import List
 
-def insertionSort(array) -> List[int]:
+def selectionSort(array, size) -> List[int]:
   """
-  Function implementing insertion sort algorithm to return the passed array sorted in the ascending order
+  Function implementing selection sort algorithm to return the passed array sorted in the ascending order
   """
-  size = len(array)
-  for index in range(1, size):
-    curr_ind = index
-    while curr_ind > 0 and array[curr_ind - 1] > array[curr_ind]:
-      array[curr_ind - 1], array[curr_ind] = array[curr_ind], array[curr_ind - 1]
-      curr_ind -= 1
+  for index in range(size):
+    min_index = index
+    for ind in range(index + 1, size):
+      if array[ind] < array[min_index]:
+        min_index = ind
+    array[min_index], array[index] = array[index], array[min_index]
   return array
 
-# data = [9, 5, 1, 4, 3]
+# Do not change the following code
 input_data = input()
 data = []
 for item in input_data.split(', '):
@@ -20,5 +20,4 @@ for item in input_data.split(', '):
     data.append(int(item))
   elif item.lstrip("-").isnumeric():
     data.append(int(item))
-print(insertionSort(data))
-
+print(selectionSort(data, len(data)))
